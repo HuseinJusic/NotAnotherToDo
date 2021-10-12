@@ -1,6 +1,6 @@
 <template>
   <div class="login">
-    login:
+    <Button label="Primary" class="p-button-outlined" />
   </div>
 </template>
 
@@ -8,10 +8,12 @@
 // @ is an alias to /src
 
 import User from '@/model/user'
+import Button from 'primevue/button'
 
 export default {
   name: 'Login',
   components: {
+    Button
   },
   data: () => ({
     user: new User('huse', '123456')
@@ -19,7 +21,7 @@ export default {
   created () {
     console.log(this.$store.state.auth)
     // this.handleRegister()
-    this.handleLogin()
+    // this.handleLogin()
   },
   methods: {
     handleLogin () {
