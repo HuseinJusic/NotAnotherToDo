@@ -2,3 +2,4 @@
 .DS_Store
 .env
 .m2
+backend/src/main/resources/public/index.html

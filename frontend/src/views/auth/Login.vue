@@ -19,7 +19,7 @@ export default {
   created () {
     console.log(this.$store.state.auth)
     // this.handleRegister()
-    // this.handleLogin()
+    this.handleLogin()
   },
   methods: {
     handleLogin () {
