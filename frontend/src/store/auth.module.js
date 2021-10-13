@@ -42,6 +42,7 @@ export const auth = {
     loginSuccess (state, user) {
       state.status.loggedIn = true
       state.user = user
+      localStorage.setItem('user', JSON.stringify(user))
     },
     loginFailure (state) {
       state.status.loggedIn = false
@@ -50,6 +51,7 @@ export const auth = {
     logout (state) {
       state.status.loggedIn = false
       state.user = null
+      localStorage.setItem('user', null)
     },
     registerSuccess (state) {
       state.status.loggedIn = false
