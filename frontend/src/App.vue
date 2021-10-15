@@ -15,6 +15,9 @@ export default {
       }
       next()
     })
+  },
+  created () {
+    this.$store.dispatch('todo/load')
   }
 }
 </script>
