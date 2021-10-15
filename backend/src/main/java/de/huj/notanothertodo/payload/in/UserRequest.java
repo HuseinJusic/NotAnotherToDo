@@ -1,22 +1,7 @@
-package de.huj.notanothertodo.model;
+package de.huj.notanothertodo.payload.in;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-import javax.persistence.*;
-
-@Entity
-@Table(name = "user")
-public class UserDao {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long id;
-
-    @Column(unique = true, nullable = false)
+public class UserRequest {
     private String username;
-
-    @Column
-    @JsonIgnore
     private String password;
 
     public String getUsername() {
@@ -34,5 +19,4 @@ public class UserDao {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

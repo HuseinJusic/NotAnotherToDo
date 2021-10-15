@@ -2,7 +2,7 @@ package de.huj.notanothertodo.controller;
 
 import de.huj.notanothertodo.config.JwtTokenUtil;
 import de.huj.notanothertodo.payload.in.JwtRequest;
-import de.huj.notanothertodo.payload.in.UserDto;
+import de.huj.notanothertodo.payload.in.UserRequest;
 import de.huj.notanothertodo.payload.out.JwtResponse;
 import de.huj.notanothertodo.service.JwtUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,7 +41,7 @@ public class JwtAuthenticationController {
     }
 
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
-    public ResponseEntity<?> saveUser(@RequestBody UserDto user) throws Exception {
+    public ResponseEntity<?> saveUser(@RequestBody UserRequest user) throws Exception {
         return ResponseEntity.ok(userDetailsService.save(user));
     }
 
