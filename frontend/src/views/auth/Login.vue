@@ -35,7 +35,7 @@ export default {
     handleLogin () {
       this.$store.dispatch('auth/login', this.user).then(
         () => {
-          this.$router.push('/about')
+          this.$router.push('/notanothertodo')
         },
         error => {
           this.loading = false

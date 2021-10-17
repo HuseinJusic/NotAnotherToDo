@@ -9,13 +9,11 @@ export const todo = {
     load ({ commit }) {
       return ToDoService.getTodos().then(
         todos => {
-          console.log(todos)
           commit('todoLoadSuccess', todos)
           return Promise.resolve(todos)
         },
         error => {
-          console.log(error)
-          commit('todoLoadError')
+          commit('todoLoadError', error)
           return Promise.reject(error)
         }
       )
@@ -23,10 +21,11 @@ export const todo = {
   },
   mutations: {
     todoLoadSuccess (state, todos) {
-      state = todos
+      state.status = todos.status
+      state.todos = todos.data
     },
-    todoLoadError (state) {
-      state = null
+    todoLoadError (state, error) {
+      state.status = error.status
     }
   }
 }
