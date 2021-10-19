@@ -1,7 +1,6 @@
 <template>
   <div class="home">
-    <h1>Hello!!!</h1>
-    <h3>logged in: {{this.$store.state.auth.status.loggedIn}}</h3>
+    <h1>NotAnotherToDo</h1>
   </div>
 </template>
 
@@ -13,3 +12,19 @@ export default {
   }
 }
 </script>
+
+<style>
+
+.home{
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+
+  justify-content: center;
+  align-items: center;
+
+  background-color: aquamarine;
+  color: white;
+}
+
+</style>

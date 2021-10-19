@@ -27,7 +27,11 @@ export default {
     InputText,
     Button
   },
-
+  created () {
+    if (this.$store.state.auth.status.loggedIn) {
+      this.$router.push('/notanothertodo')
+    }
+  },
   data: () => ({
     user: new User('', '')
   }),
