@@ -30,8 +30,8 @@ public class ToDoService {
     }
 
     public ToDo saveToDo(User user, ToDoRequest toDoRequest){
-        ToDo toDo = new ToDo(toDoRequest.getTitle(), toDoRequest.getBody(), user);;
-        return toDoRepository.save(toDo);
+        ToDo toDo = toDoRepository.save(new ToDo(toDoRequest.getId(), toDoRequest.getTitle(), toDoRequest.getBody(), user));
+        return toDo;
     }
 
     public ToDo updateToDo(User user, ToDoRequest toDoRequest) throws Exception {

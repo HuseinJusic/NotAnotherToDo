@@ -29,7 +29,7 @@ export default {
   },
 
   data: () => ({
-    user: new User('huse', '123456')
+    user: new User('', '')
   }),
   methods: {
     handleLogin () {

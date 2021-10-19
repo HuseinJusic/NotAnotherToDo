@@ -2,6 +2,7 @@ package de.huj.notanothertodo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonKey;
 
 import javax.persistence.*;
 
@@ -24,13 +25,18 @@ public class ToDo {
     @JsonIgnore
     private User user;
 
-    public ToDo(String title, String body, User user) {
+    public ToDo(long id, String title, String body, User user) {
+        this.id = id;
         this.title = title;
         this.body = body;
         this.user = user;
     }
 
     public ToDo() {
+    }
+
+    public long getId() {
+        return id;
     }
 
     public String getTitle() {

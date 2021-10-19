@@ -10,17 +10,17 @@ const routes = [
   {
     path: '/login',
     name: 'Login',
-    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Login')
   },
   {
     path: '/logout',
     name: 'Logout',
-    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Logout.vue')
+    component: () => import(/* webpackChunkName: "login" */ '../views/auth/Logout')
   },
   {
     path: '/register',
     name: 'Register',
-    component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register.vue')
+    component: () => import(/* webpackChunkName: "register" */ '../views/auth/Register')
   },
   {
     path: '/notanothertodo',
@@ -28,7 +28,15 @@ const routes = [
     meta: {
       requiresAuth: true
     },
-    component: () => import(/* webpackChunkName: "notanothertodo" */ '../views/NotAnothertoDo.vue')
+    component: () => import(/* webpackChunkName: "notanothertodo" */ '../views/NotAnothertoDo')
+  },
+  {
+    path: '/notanothertodo/edit/:id?',
+    name: 'TodoEdit',
+    meta: {
+      requiresAuth: true
+    },
+    component: () => import(/* webpackChunkName: "notanothertodo" */ '../views/todo/Edit')
   }
 ]
 
