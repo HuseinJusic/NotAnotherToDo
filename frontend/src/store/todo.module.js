@@ -45,6 +45,18 @@ export const todo = {
           return Promise.reject(error)
         }
       )
+    },
+    remove ({ commit }, todoId) {
+      return ToDoService.removeToDo(todoId).then(
+        res => {
+          commit('removeSuccess', res)
+          return Promise.resolve(res)
+        },
+        error => {
+          commit('removeError', error)
+          return Promise.reject(error)
+        }
+      )
     }
   },
   mutations: {
@@ -53,8 +65,14 @@ export const todo = {
       state.todos = todos.data
     },
     getSuccess (state, todo) {
-      state.status = todo.status
+      this.dispatch('todo/load')
       state.selected = todo.data
+    },
+    removeSuccess (state, todo) {
+      this.dispatch('todo/load')
+    },
+    removeError (state, todo) {
+      console.log(todo)
     },
     todoLoadError (state, error) {
       state.status = error.status

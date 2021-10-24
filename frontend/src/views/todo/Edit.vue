@@ -4,6 +4,7 @@
     {{JSON.stringify(this.todo)}}
     <InputText type="text" v-model="todo.title" />
     <InputText type="text" v-model="todo.body" />
+    <InputText type="text" v-model="todo.planed" />
     <Button label="save" @click="save"/>
   </div>
 </template>

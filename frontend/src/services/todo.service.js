@@ -16,8 +16,8 @@ class ToDoService {
     return axios.post(API_URL, JSON.stringify(todo), { headers: authHeader() })
   }
 
-  removeToDo (todo) {
-    return axios.delete(API_URL + todo.id, { headers: authHeader() })
+  removeToDo (todoId) {
+    return axios.delete(API_URL + todoId, { headers: authHeader() })
   }
 }
 

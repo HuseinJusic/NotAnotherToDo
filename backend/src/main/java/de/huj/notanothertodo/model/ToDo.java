@@ -1,10 +1,9 @@
 package de.huj.notanothertodo.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonKey;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 
 @Entity
 @Table(name = "todo")
@@ -20,7 +19,16 @@ public class ToDo {
     @Column
     private String body;
 
-    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @Column(columnDefinition = "Boolean default false")
+    private boolean checked = false;
+
+    @Column
+    private LocalDate planed;
+
+    @Column
+    private int points;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "user_id", referencedColumnName = "id")
     @JsonIgnore
     private User user;
@@ -29,6 +37,16 @@ public class ToDo {
         this.id = id;
         this.title = title;
         this.body = body;
+        this.user = user;
+    }
+
+    public ToDo(long id, String title, String body, boolean checked, LocalDate planed, int points, User user) {
+        this.id = id;
+        this.title = title;
+        this.body = body;
+        this.checked = checked;
+        this.planed = planed;
+        this.points = points;
         this.user = user;
     }
 
@@ -61,5 +79,33 @@ public class ToDo {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public boolean isChecked() {
+        return checked;
+    }
+
+    public void setChecked(boolean checked) {
+        this.checked = checked;
+    }
+
+    public LocalDate getPlaned() {
+        return planed;
+    }
+
+    public void setPlaned(LocalDate planed) {
+        this.planed = planed;
+    }
+
+    public int getPoints() {
+        return points;
+    }
+
+    public void setPoints(int points) {
+        this.points = points;
     }
 }

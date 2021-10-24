@@ -30,7 +30,7 @@ public class ToDoService {
     }
 
     public ToDo saveToDo(User user, ToDoRequest toDoRequest){
-        ToDo toDo = toDoRepository.save(new ToDo(toDoRequest.getId(), toDoRequest.getTitle(), toDoRequest.getBody(), user));
+        ToDo toDo = toDoRepository.save(new ToDo(toDoRequest.getId(), toDoRequest.getTitle(), toDoRequest.getBody(), toDoRequest.isChecked(), toDoRequest.getPlaned(), toDoRequest.getPoints() ,user));
         return toDo;
     }
 
