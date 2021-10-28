@@ -10,8 +10,8 @@ export const todo = {
   namespaced: true,
   state: initialState,
   actions: {
-    load ({ commit }) {
-      return ToDoService.getTodos().then(
+    load ({ commit }, selectedDate = null) {
+      return ToDoService.getTodos(selectedDate).then(
         todos => {
           commit('todoLoadSuccess', todos)
           return Promise.resolve(todos)

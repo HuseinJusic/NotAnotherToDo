@@ -4,8 +4,8 @@ import authHeader from '@/services/auth-header'
 const API_URL = '/api/todo/'
 
 class ToDoService {
-  getTodos () {
-    return axios.get(API_URL, { headers: authHeader() })
+  getTodos (selectedDate) {
+    return axios.get(API_URL + 'all?planed=' + selectedDate + '', { headers: authHeader() })
   }
 
   getTodo (todoId) {

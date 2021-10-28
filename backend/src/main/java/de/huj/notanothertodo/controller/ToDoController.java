@@ -10,7 +10,10 @@ import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @CrossOrigin
@@ -26,6 +29,21 @@ public class ToDoController {
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public List<ToDo> getToDos(Authentication authentication) throws Exception {
         User user = userService.getUserByName(authentication.getName());
+        return toDoService.getToDo(user);
+    }
+
+    @RequestMapping(value = "/all", method = RequestMethod.GET)
+    public List<ToDo> getToDosParam(Authentication authentication, @RequestParam String planed,  @RequestParam Optional<LocalDate> from,  @RequestParam Optional<LocalDate> to) throws Exception {
+        User user = userService.getUserByName(authentication.getName());
+
+        if(planed != null ){
+            return toDoService.getToDo(user, LocalDate.parse(planed));
+        }
+
+        if(from.isPresent() && to.isPresent()){
+            return toDoService.getToDo(user, from.get(), to.get());
+        }
+
         return toDoService.getToDo(user);
     }
 

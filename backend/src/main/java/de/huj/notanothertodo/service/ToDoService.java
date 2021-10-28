@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.StreamSupport;
 
@@ -23,6 +24,14 @@ public class ToDoService {
 
     public List<ToDo> getToDo(User u){
         return toDoRepository.findByUser(u);
+    }
+
+    public List<ToDo> getToDo(User u, LocalDate planed){
+        return toDoRepository.findByUserAndPlaned(u, planed);
+    }
+
+    public List<ToDo> getToDo(User u, LocalDate from, LocalDate to){
+        return toDoRepository.findByUserAndPlanedIsGreaterThanEqualAndPlanedIsLessThanEqual(u, from, to);
     }
 
     public ToDo getToDo(User u, long id){
