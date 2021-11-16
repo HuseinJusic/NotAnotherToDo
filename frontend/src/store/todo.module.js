@@ -37,7 +37,7 @@ export const todo = {
     save ({ commit }, todo) {
       return ToDoService.saveTodo(todo).then(
         res => {
-          commit('getSuccess', res)
+          commit('saveSuccess', res.data)
           return Promise.resolve(res)
         },
         error => {
@@ -49,7 +49,7 @@ export const todo = {
     remove ({ commit }, todoId) {
       return ToDoService.removeToDo(todoId).then(
         res => {
-          commit('removeSuccess', res)
+          commit('removeSuccess', todoId)
           return Promise.resolve(res)
         },
         error => {
@@ -65,11 +65,25 @@ export const todo = {
       state.todos = todos.data
     },
     getSuccess (state, todo) {
-      this.dispatch('todo/load')
+      for (let i = 0; i < state.todos.length; i++) {
+        if (state.todos[i].id === todo.data.id) {
+          state.todos[i] = todo.data
+        }
+      }
       state.selected = todo.data
     },
-    removeSuccess (state, todo) {
-      this.dispatch('todo/load')
+    saveSuccess (state, todo) {
+      for (let i = 0; i < state.todos.length; i++) {
+        if (state.todos[i].id === todo.id) {
+          state.todos[i] = todo
+          return
+        }
+      }
+      state.todos = { ...state.todos, todo }
+      state.selected = todo
+    },
+    removeSuccess (state, todoId) {
+      state.todos = state.todos.filter(todo => todo !== todoId)
     },
     removeError (state, todo) {
       console.log(todo)

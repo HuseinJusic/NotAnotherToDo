@@ -1,40 +1,38 @@
 <template>
-  <DataTable :value="todos" :loading="this.loading" >
-    <Calendar v-model="selectedDate" :loading="this.loading" dateFormat="yy-mm-dd" :inline="!isMobile" :touchUI="isMobile" @date-select="loadNewDay" />
-    <Column field="checked" header="Done" key="checked">
-      <template #body="{data}">
-        <Checkbox v-model="data.checked" :binary="true" :key="'checked-'+data.id" @change="toggle(data)"/>
-      </template>
-    </Column>
-    <Column v-for="col of columns" :field="col.field" :header="col.header" :key="col.field"></Column>
-    <Column headerStyle="width: 8em" bodyStyle="text-align: center">
-      <template #header>
-        <Button type="button" icon="pi pi-plus"  @click="$router.push('/notanothertodo/edit/')"></Button>
-      </template>
-      <template #body="slotProps">
-        <Button type="button" icon="pi pi-trash" class="p-button-danger row-button" @click="removetodo(slotProps.data.id)"></Button>
-        <Button type="button" icon="pi pi-pencil" class="p-button-warning" @click="$router.push('/notanothertodo/edit/' + slotProps.data.id)"></Button>
-      </template>
-    </Column>
-  </DataTable>
+  <div class="notanothertodo-body">
+    <div class="util-body">
+      <Button class="add-button" icon="pi pi-plus" @click="$router.push('/notanothertodo/edit')"/>
+
+      <Calendar
+        class="calendar"
+        v-model="selectedDate"
+        :loading="this.loading"
+        dateFormat="yy-mm-dd"
+        :inline="false"
+        :touchUI="isMobile"
+         @date-select="loadNewDay"/>
+    </div>
+
+    <TodoList
+    :todos ="todos"
+    :is-mobile="isMobile"></TodoList>
+
+  </div>
+
 </template>
 
 <script>
-import DataTable from 'primevue/datatable'
-import Column from 'primevue/column'
-import Button from 'primevue/button'
-import Checkbox from 'primevue/checkbox'
 import Calendar from 'primevue/calendar'
+import Button from 'primevue/button'
 import { determineBreakpoint, BreakpointValue } from '@/util/breakpoints'
+import TodoList from '@/components/TodoList'
 
 export default {
   name: 'NotAnothertoDo',
   components: {
-    DataTable,
-    Column,
-    Button,
-    Checkbox,
-    Calendar
+    TodoList,
+    Calendar,
+    Button
   },
   created () {
     this.loading = true
@@ -48,12 +46,6 @@ export default {
   },
   data: () => ({
     loading: false,
-    columns: [
-      { field: 'title', header: 'Title' },
-      { field: 'body', header: 'Body' },
-      { field: 'planed', header: 'Planed' },
-      { field: 'points', header: 'Points' }
-    ],
     breakpoint: determineBreakpoint(window.innerWidth),
     selectedDate: (new Date()).toISOString().split('T')[0]
   }),
@@ -86,8 +78,29 @@ export default {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .row-button{
   margin-right: 20px;
+}
+
+.notanothertodo-body{
+
+  display: flex;
+  flex-direction: column;
+
+  .util-body{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    .add-button{
+      height:36px;
+      margin: 20px
+    }
+
+    .calendar{
+      margin: 20px;
+    }
+  }
 }
 </style>
