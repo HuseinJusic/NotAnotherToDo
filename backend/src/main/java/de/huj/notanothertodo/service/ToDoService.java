@@ -27,7 +27,7 @@ public class ToDoService {
     }
 
     public List<ToDo> getToDo(User u, LocalDate planed){
-        return toDoRepository.findByUserAndPlaned(u, planed);
+        return toDoRepository.findByUserAndPlanedOrPlanedIsNull(u, planed);
     }
 
     public List<ToDo> getToDo(User u, LocalDate from, LocalDate to){

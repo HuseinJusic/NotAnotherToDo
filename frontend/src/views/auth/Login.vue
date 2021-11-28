@@ -11,7 +11,7 @@
     </span>
 
     <Button class="login-element" label="Submit" @click="handleLogin()"/>
-    <Button label="Register" @click="this.$router.push('/register')"/>
+<!--    <Button label="Register" @click="this.$router.push('/register')"/>-->
   </div>
 </template>
 

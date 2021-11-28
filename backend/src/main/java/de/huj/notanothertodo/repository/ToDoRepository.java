@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ToDoRepository extends CrudRepository<ToDo, Integer> {
     List<ToDo> findByUser(User user);
-    List<ToDo> findByUserAndPlaned(User user, LocalDate planed);
+    List<ToDo> findByUserAndPlanedOrPlanedIsNull(User user, LocalDate planed);
     List<ToDo> findByUserAndPlanedIsGreaterThanEqualAndPlanedIsLessThanEqual(User user, LocalDate from, LocalDate to);
     Optional<ToDo> findByUserAndId(User user, long id);
 }

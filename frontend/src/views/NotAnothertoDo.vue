@@ -12,10 +12,18 @@
         :touchUI="isMobile"
          @date-select="loadNewDay"/>
     </div>
-
-    <TodoList
-    :todos ="todos"
-    :is-mobile="isMobile"></TodoList>
+    <div class="content-body">
+      <div class="notanothertodo-body-scheduled">
+        <TodoList
+          :todos ="planedTodos"
+          :is-mobile="isMobile"></TodoList>
+      </div>
+      <div class="notanothertodo-body-not-scheduled">
+        <TodoList
+          :todos ="notPlanedTodos"
+          :is-mobile="isMobile"></TodoList>
+      </div>
+    </div>
 
   </div>
 
@@ -50,8 +58,11 @@ export default {
     selectedDate: (new Date()).toISOString().split('T')[0]
   }),
   computed: {
-    todos () {
-      return this.$store.state.todo.todos
+    planedTodos () {
+      return this.$store.state.todo.todos.filter(todo => todo.planed !== null)
+    },
+    notPlanedTodos () {
+      return this.$store.state.todo.todos.filter(todo => todo.planed === null)
     },
     isMobile () {
       return this.breakpoint <= BreakpointValue.SM
@@ -102,5 +113,22 @@ export default {
       margin: 20px;
     }
   }
+  .content-body{
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $size-min-md) {
+      flex-direction: row-reverse;
+
+      .notanothertodo-body-scheduled{
+        width: 50%;
+      }
+
+      .notanothertodo-body-not-scheduled{
+        width: 50%;
+      }
+    }
+  }
+
 }
 </style>

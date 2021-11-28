@@ -4,7 +4,7 @@
       <router-link v-if="!loggedIn" to="/">Home</router-link>
       <router-link v-else to="/notanothertodo">NotAnotherToDo</router-link>
       <router-link v-if="!loggedIn" class="login-margin login-element" to="/login">Signin</router-link>
-      <router-link v-if="!loggedIn" class="login-element" to="/register">Signup</router-link>
+<!--      <router-link v-if="!loggedIn" class="login-element" to="/register">Signup</router-link>-->
       <router-link v-if="loggedIn" class="login-margin login-element" to="/logout">Logout</router-link>
     </div>
     <router-view/>
